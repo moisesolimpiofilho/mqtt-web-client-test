@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.0/mqttws31.min.js"
+        integrity="sha512-aiB3QR5nxxlOp0MH2OErt+6zz2yFMhewO/H2MGXcexITtyc1Zm2+SF2Cb29bFWOMNiQ8zV2LUI9Hb4fvtnfsjA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="padding-left: 10px;">MQTT Client Test</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">broker.hivemq.com:1883</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="connection-overlay" id="connection-overlay" role="status" aria-live="polite">
+        <div class="connection-status">
+            <div class="connection-spinner" aria-hidden="true"></div>
+            <p id="connection-message">Conectando ao Broker MQTT...</p>
+            <button class="btn" id="retry-connection" type="button" hidden>Tentar novamente</button>
+        </div>
+    </div>
+
+    <main class="container" id="mqtt-content" inert aria-busy="true">
+
+        <div class="row messages-row">
+            <div class="col s6">
+                <div class="card-panel">
+                    <h6>Inscrever-se</h6>
+
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="topico" type="text" class="validate" onkeydown="if(event.key === 'Enter'){adicionarTopicoLista()}">
+                        <label for="topico">Tópico</label>
+                    </div>
+
+                    <h6>Tópicos Inscritos</h6>
+                    <ul class="collection with-header" id="lista-topicos"></ul>
+                </div>
+
+                <div class="card-panel">
+                    <h6>Publicar</h6>
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="topico-mensagem" type="text" class="validate">
+                        <label for="topico-mensagem">Tópico</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input placeholder="Placeholder" id="mensagem" type="text" class="validate">
+                        <label for="mensagem">Mensagem</label>
+                    </div>
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action"
+                        style="margin-bottom: 10px;" id="enviar-mensagem">
+                        Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="col s6 card-panel messages-panel">
+                <div class="messages-header">
+                    <h6>Mensagens que chegaram</h6>
+                    <button class="messages-clear" id="limpar-mensagens" type="button"
+                        aria-label="Apagar todas as mensagens" title="Apagar todas as mensagens">
+                        <i class="material-icons" aria-hidden="true">delete</i>
+                    </button>
+                </div>
+
+                <div class="collection messages-list" id="lista-mensagens"></div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="index.js"></script>
+
+</html>
