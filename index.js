@@ -19,7 +19,7 @@ const id = `Esp32${Math.floor(Math.random() * 900)}`
 
 // Configura a conexão com Broker MQTT
 const url = 'broker.hivemq.com'
-const porta = 8883
+const porta = 8884
 const web = new Paho.MQTT.Client(url, porta, id)
 
 // Quando chegar uma mensagem (subscribe)
